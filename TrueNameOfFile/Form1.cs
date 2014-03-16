@@ -29,6 +29,7 @@ namespace TrueNameOfFile
                 bool checkingFiles;                                                                             //check that there are no files with the same name.
                 bool result;                                                                                    //eng check
                 char[] letters;                                                                                 //string to char-check
+                int checkVersion = 0;
 
                 for (int i = 0; i < files.Length; i++)                                                          //cycle file
                 {
@@ -46,7 +47,7 @@ namespace TrueNameOfFile
                                 ind = files[i].LastIndexOf('\\');
                                 nameFileOld = files[i].Substring(ind + 1, (files[i].Length - (ind + 1)));       //check name file
                                 nameFile = mp3File.Tag.Title.ToString();                                        //check title
-
+                                checkVersion = 0;
                                 //---check, that tag-name is English
                                 letters = nameFile.ToCharArray();   
                                 result = true;
@@ -71,18 +72,52 @@ namespace TrueNameOfFile
                                             break;
                                         }
                                     }
+                                    checkVersion = 0;
+                                    //---found the unique name
+                                    if (checkingFiles == false)                                                 
+                                    {
+                                        int j=0;
+                                        checkVersion = 1;
+                                        checkFiles = Directory.GetFiles(pathDirectory, "*mp3");
+                                        do
+                                        {
+
+                                            if ((pathDirectory + nameFile + "(" + checkVersion + ")" + ".mp3").CompareTo(checkFiles[j]) == 0)
+                                            {
+                                                checkVersion++;
+                                                j = 0;
+                                            }
+                                            j++;
+                                        } while (j < checkFiles.Length);
+                                        checkingFiles = true;
+                                    }
+                                    //---
                                     if (checkingFiles != false)
                                     {
                                         if (mp3File.Tag.FirstPerformer != null)                                 //if file have the Artist
                                         {
-                                            System.IO.File.Move(files[i], pathDirectory + mp3File.Tag.FirstPerformer.ToString() + " - " + nameFile + ".mp3");
+                                            if (checkVersion != 0)
+                                            {
+                                                System.IO.File.Move(files[i], pathDirectory + mp3File.Tag.FirstPerformer.ToString() + " - " + nameFile + "(" + checkVersion + ")" + ".mp3");
+                                            }
+                                            else
+                                            {
+                                                System.IO.File.Move(files[i], pathDirectory + mp3File.Tag.FirstPerformer.ToString() + " - " + nameFile + ".mp3");
+                                            }
                                         }
                                         else
                                         {
-                                            System.IO.File.Move(files[i], pathDirectory + nameFile + ".mp3");
+                                            if (checkVersion != 0)
+                                            {
+                                                System.IO.File.Move(files[i], pathDirectory + nameFile + "(" + checkVersion + ")" + ".mp3");
+                                            }
+                                            else
+                                            {
+                                                System.IO.File.Move(files[i], pathDirectory + nameFile + ".mp3");
+                                            }
                                         }
                                     }
-                                    
+                                    checkVersion = 0;
                                 }
                             }
                         }
