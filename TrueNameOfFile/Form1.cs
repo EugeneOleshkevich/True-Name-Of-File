@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using TagLib;
-
+using System.Reflection;
 namespace TrueNameOfFile
 {
     public partial class Form1 : Form
@@ -100,6 +100,17 @@ namespace TrueNameOfFile
         public Form1()
         {
             InitializeComponent();
+            Assembly ass = null;
+            try
+            {
+                ass = Assembly.Load("taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0");
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Not found \"taglib-sharp (Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0)\"!\nCheck taglib-sharp.dll file.", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(0);
+            }
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
