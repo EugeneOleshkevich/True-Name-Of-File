@@ -18,6 +18,43 @@ namespace TrueNameOfFile
         class trueName
         {
             public string[] files;
+            public string checkEvilSymbol(string nameFile)                                              //Evil Symbol in name file
+            {
+                while (true)
+                {
+                    int index = nameFile.LastIndexOf('/');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf(':');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf('*');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf('?');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf('"');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf('<');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf('>');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf('>');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+                    index = nameFile.LastIndexOf('|');
+                    if (index != -1)
+                        nameFile = nameFile.Remove(index, 1);
+
+                    if (index == -1)
+                        break;
+                };
+                return nameFile;
+            }
             public void trueOfName()
             {
                 int ind = files[0].LastIndexOf('\\');                                                           //Search index last slash
@@ -61,6 +98,10 @@ namespace TrueNameOfFile
                                     }
                                 }
                                 //---
+                                //---Check to Evil Symbol
+                                nameFile = checkEvilSymbol(nameFile);
+                               
+                                //---
                                 if (nameFileOld.CompareTo(nameFile) != 0 && result == true)                                       //compare them to do unnecessary operations
                                 {
                                     checkFiles = Directory.GetFiles(pathDirectory, "*mp3");                     //check that there are no files with the same name.
@@ -96,13 +137,15 @@ namespace TrueNameOfFile
                                     {
                                         if (mp3File.Tag.FirstPerformer != null)                                 //if file have the Artist
                                         {
+                                            string namePerfomer = mp3File.Tag.FirstPerformer.ToString();
+                                            namePerfomer = checkEvilSymbol(namePerfomer);
                                             if (checkVersion != 0)
                                             {
-                                                System.IO.File.Move(files[i], pathDirectory + mp3File.Tag.FirstPerformer.ToString() + " - " + nameFile + "(" + checkVersion + ")" + ".mp3");
+                                                System.IO.File.Move(files[i], pathDirectory + namePerfomer + " - " + nameFile + "(" + checkVersion + ")" + ".mp3");
                                             }
                                             else
                                             {
-                                                System.IO.File.Move(files[i], pathDirectory + mp3File.Tag.FirstPerformer.ToString() + " - " + nameFile + ".mp3");
+                                                System.IO.File.Move(files[i], pathDirectory + namePerfomer + " - " + nameFile + ".mp3");
                                             }
                                         }
                                         else
