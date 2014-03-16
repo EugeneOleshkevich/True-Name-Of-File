@@ -1,0 +1,11 @@
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\bin\Debug\TrueNameOfFile.exe.config
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\bin\Debug\TrueNameOfFile.exe
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\bin\Debug\TrueNameOfFile.pdb
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\obj\Debug\TrueNameOfFile.Form1.resources
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\obj\Debug\TrueNameOfFile.Properties.Resources.resources
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\obj\Debug\TrueNameOfFile.csproj.GenerateResource.Cache
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\obj\Debug\TrueNameOfFile.exe
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\obj\Debug\TrueNameOfFile.pdb
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\bin\Debug\policy.2.0.taglib-sharp.dll
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\bin\Debug\taglib-sharp.dll
+c:\users\hp\documents\visual studio 2012\Projects\TrueNameOfFile\TrueNameOfFile\bin\Debug\policy.2.0.taglib-sharp.config
